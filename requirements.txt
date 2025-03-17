@@ -1,5 +1,19 @@
 streamlit
-PyPDF2
 pandas
 scikit-learn
 numpy
+Flask
+Flask-SQLAlchemy
+Flask-Login
+PyPDF2
+sentence-transformers
+spacy
+celery
+redis
+
+
+# download - > python -m spacy download en_core_web_sm
+
+# download -> redis https://github.com/tporadowski/redis/releases
+# and run ->  celery -A app.celery worker --pool=solo --loglevel=info
+ 

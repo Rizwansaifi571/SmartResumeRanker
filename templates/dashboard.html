@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Resume Screening</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <h1>Dashboard</h1>
+        <ul>
+            <li><a href="{{ url_for('upload_resume') }}">Upload Resume</a></li>
+            <li><a href="{{ url_for('logout') }}" class="logout-btn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        <h2>Welcome, <span class="username">{{ username }}</span> 👋</h2>
+        <p>Upload resumes, add job descriptions (optional), and generate rankings.</p>
+
+        <div class="dashboard-sections">
+            <!-- Add Job Description Form (Optional) -->
+            <div class="card">
+                <h3>📝 Add Job Description (Optional)</h3>
+                <form method="POST" action="{{ url_for('dashboard') }}">
+                    <textarea name="job_description" rows="3" placeholder="Enter job description..."></textarea>
+                    <button type="submit" class="btn">Add Job</button>
+                </form>
+            </div>
+
+            <!-- Upload Resume Form -->
+            <div class="card">
+                <h3>📂 Upload Resumes</h3>
+                <form method="POST" action="{{ url_for('upload_resume') }}" enctype="multipart/form-data">
+                    <input type="file" name="resume" accept=".pdf" required>
+                    <button type="submit" class="btn">Upload</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Job List with Ranking Button -->
+        <div class="card">
+            <h3>🏢 Available Jobs</h3>
+            {% if jobs %}
+                <ul class="job-list">
+                    {% for job in jobs %}
+                        <li>
+                            <span class="job-title">{{ job.description[:50] }}...</span>
+                            <a href="{{ url_for('rank', job_id=job.id) }}" class="btn rank-btn">Generate Results</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-data">No job descriptions added yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Resume List -->
+        <div class="card">
+            <h3>📑 Uploaded Resumes</h3>
+            {% if resumes %}
+                <ul class="resume-list">
+                    {% for resume in resumes %}
+                        <li>{{ resume.filename }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-data">No resumes uploaded yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

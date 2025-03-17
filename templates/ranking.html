@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking - AI Resume Screening</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <h1>Resume Ranking</h1>
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('upload_resume') }}">Upload Resume</a></li>
+            <li><a href="{{ url_for('logout') }}" class="logout-btn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="ranking-container">
+        <h2>Ranking Results for Job ID: {{ job.id }}</h2>
+        <p>Job Description: {{ job.description }}</p>
+        {% if scores %}
+            <table>
+                <tr>
+                    <th>Candidate</th>
+                    <th>Similarity Score</th>
+                </tr>
+                {% for filename, score in scores %}
+                    <tr>
+                        <td>{{ filename }}</td>
+                        <td>{{ score|round(2) }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p class="no-data">No resumes available to rank.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

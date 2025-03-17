@@ -1,0 +1,291 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Navigation Bar */
+nav {
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+nav h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #ffd700;
+}
+
+/* Hero Section (Home Page) */
+.hero {
+    margin-top: 120px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 48px;
+    font-weight: 600;
+    color: white;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #ffd700;
+    color: #222;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    background-color: white;
+    color: #222;
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Forms (Login, Register, Upload) */
+.form-container {
+    width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    margin-top: 120px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.form-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background: #ffd700;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.form-container button:hover {
+    background: white;
+    color: black;
+    transform: scale(1.05);
+}
+
+/* Dashboard */
+.dashboard-container {
+    margin-top: 120px;
+    width: 80%;
+    max-width: 1200px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    color: white;
+    text-align: left;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.dashboard-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Card Layout (for sections on dashboard) */
+.card {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    color: #ffd700;
+    margin-bottom: 15px;
+}
+
+/* Lists for Jobs and Resumes */
+.job-list, .resume-list {
+    list-style: none;
+    padding: 0;
+}
+
+.job-list li, .resume-list li {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 8px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rank-btn {
+    padding: 8px 15px;
+    background: #ffd700;
+    color: black;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.rank-btn:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+/* Upload Resume Page */
+.upload-container {
+    width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    margin-top: 120px;
+}
+
+/* Resume Ranking Container */
+.ranking-container {
+    margin-top: 120px;
+    width: 80%;
+    max-width: 1200px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.ranking-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.ranking-container th, .ranking-container td {
+    padding: 12px;
+    border-bottom: 1px solid white;
+}
+
+.ranking-container th {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.ranking-container tr:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .dashboard-container, .ranking-container {
+        width: 95%;
+    }
+
+    .dashboard-sections {
+        flex-direction: column;
+    }
+}
