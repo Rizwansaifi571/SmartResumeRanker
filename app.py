@@ -16,7 +16,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ai_resume_screening.db'
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
-# (Using only new-style settings here; avoid mixing with old names)
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
@@ -209,6 +208,36 @@ def rank(job_id):
     # Sort by descending similarity score
     scores = sorted(scores, key=lambda x: x[1], reverse=True)
     return render_template("ranking.html", scores=scores, job=job)
+
+# Delete resume route
+@app.route("/delete_resume/<int:resume_id>", methods=["POST"])
+@login_required
+def delete_resume(resume_id):
+    resume = Resume.query.get_or_404(resume_id)
+    try:
+        db.session.delete(resume)
+        db.session.commit()
+        flash("Resume deleted successfully!")
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error("Error deleting resume: %s", e)
+        flash("Error deleting resume.")
+    return redirect(url_for("dashboard"))
+
+# Delete job description route
+@app.route("/delete_job/<int:job_id>", methods=["POST"])
+@login_required
+def delete_job(job_id):
+    job = JobDescription.query.get_or_404(job_id)
+    try:
+        db.session.delete(job)
+        db.session.commit()
+        flash("Job description deleted successfully!")
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error("Error deleting job description: %s", e)
+        flash("Error deleting job description.")
+    return redirect(url_for("dashboard"))
 
 if __name__ == '__main__':
     # Create necessary directories
