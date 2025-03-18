@@ -10,6 +10,7 @@ sentence-transformers
 spacy
 celery
 redis
+gunicorn
 
 
 # download - > python -m spacy download en_core_web_sm
