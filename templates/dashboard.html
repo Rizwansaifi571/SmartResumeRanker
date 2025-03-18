@@ -17,23 +17,23 @@
 
   <div class="dashboard-container">
     <h2>Welcome, <span class="username">{{ username }}</span> 👋</h2>
-    <p>Upload resumes, add job descriptions (optional), and generate rankings.</p>
+    <p>Upload resumes, add job descriptions, and generate rankings.</p>
 
     <div class="dashboard-sections">
       <!-- Add Job Description Form (Optional) -->
       <div class="card">
-        <h3>📝 Add Job Description (Optional)</h3>
+        <h3>📝 Add Job Description </h3>
         <form method="POST" action="{{ url_for('dashboard') }}">
           <textarea name="job_description" rows="3" placeholder="Enter job description..."></textarea>
           <button type="submit" class="btn">Add Job</button>
         </form>
       </div>
 
-      <!-- Upload Resume Form -->
+      <!-- Upload Resume Form (Multiple Files Supported) -->
       <div class="card">
         <h3>📂 Upload Resumes</h3>
         <form method="POST" action="{{ url_for('upload_resume') }}" enctype="multipart/form-data">
-          <input type="file" name="resume" accept=".pdf" required>
+          <input type="file" name="resume" accept=".pdf" multiple required>
           <button type="submit" class="btn">Upload</button>
         </form>
       </div>
@@ -58,6 +58,14 @@
       <p class="no-data">No job descriptions added yet.</p>
       {% endif %}
     </div>
+
+    <!-- Option to Rank All Resumes if No Job Description is Provided -->
+    {% if not jobs and resumes %}
+    <div class="card">
+      <h3>Rank All Resumes</h3>
+      <a href="{{ url_for('rank_all') }}" class="btn rank-btn">Generate Results</a>
+    </div>
+    {% endif %}
 
     <!-- Resume List with Delete Buttons -->
     <div class="card">
